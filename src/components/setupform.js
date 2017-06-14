@@ -72,7 +72,7 @@ class CapitalismSetup extends Component {
 
     return (
 
-      <Paper style={style} zDepth={3}>
+      <Paper style={style} zDepth={5}>
         <br />
 
         <div>
