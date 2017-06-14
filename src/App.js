@@ -5,16 +5,23 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import logo from './images/logo.png';
 import './styles/App.css';
-
-import CapitalismHeader from './containers/header';
+import CapitalismSetup from './components/setupform';
 import dealCards from './utils/cards';
+
+
 
 class App extends Component {
   render() {
-    console.log(dealCards(4))
+    console.log(dealCards(5))
     return (
-      <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-          <CapitalismHeader />
+      <MuiThemeProvider>
+        <div className="App">
+        <br/>
+          <img src={logo} className="App-logo"/>
+          <div className="App-content">
+            <CapitalismSetup />
+          </div>
+        </div>
       </MuiThemeProvider>
     );
   }
