@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Form, Text } from 'react-form';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
@@ -25,8 +24,10 @@ class CapitalismSetup extends Component {
     this.state = {
       numPlayers: 0,
       name: '',
+      code: '',
       numError: '',
       nameError: '',
+      codeError: '',
     };
   }
 
@@ -44,9 +45,16 @@ class CapitalismSetup extends Component {
     });
   }
 
+  handleCodeChange = (event) => {
+    this.setState({
+      code: event.target.value
+    })
+  }
+
   startGame = () => {
     let newName = this.state.name;
     let newNum = parseInt(this.state.numPlayers);
+    let newCode = this.state.code;
     let valid = true;
 
     if(newName == "") {
@@ -61,6 +69,14 @@ class CapitalismSetup extends Component {
       valid = false;
     } else {
       this.setState({numError: ""});
+    }
+
+    if(newCode == "") {
+      this.setState({codeError: "Game code cannot be blank"});
+      valid = false;
+    } else {
+      //TODO: preexisting game code
+      this.setState({codeError: ""});
     }
 
     if(valid) {
@@ -90,6 +106,15 @@ class CapitalismSetup extends Component {
             onChange={this.handleNameChange}
           />
         </div>
+
+        <div>
+          <TextField
+            hintText="Game code"
+            errorText={this.state.codeError}
+            onChange={this.handleCodeChange}
+          />
+        </div>
+
         <br />
         <br />
         <br />
