@@ -19,7 +19,7 @@ const CapitalismSetup = () => (
 
           <div>
             <h4> Number of players </h4>
-            <<Text field='userName' />
+            <Text field='userName' />
           </div>
 
           <button type='submit'> Submit </button>
