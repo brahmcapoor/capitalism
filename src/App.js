@@ -9,14 +9,18 @@ import CapitalismHeader from './containers/header';
 import CapitalismSetup from './components/setupform';
 import dealCards from './utils/cards';
 
+
+
 class App extends Component {
   render() {
     console.log(dealCards(5))
     return (
-      <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-        <div>
+      <MuiThemeProvider>
+        <div className="App">
           <CapitalismHeader />
-          <CapitalismSetup />
+          <div className="App-content">
+            <CapitalismSetup />
+          </div>
         </div>
       </MuiThemeProvider>
     );
