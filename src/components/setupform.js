@@ -8,11 +8,15 @@ import muiThemeable from 'material-ui/styles/muiThemeable';
 const style = {
   height: 300,
   width: 500,
-  margin: 20,
+  padding: 20,
   textAlign: 'center',
   display: 'inline-block',
   margin: 'auto',
 };
+
+const buttonStyle = {
+  float: 'right',
+}
 
 class CapitalismSetup extends Component {
 
@@ -58,7 +62,7 @@ class CapitalismSetup extends Component {
     } else {
       this.setState({numError: ""});
     }
-    
+
     if(valid) {
       console.log(this.state);
     }
@@ -69,7 +73,6 @@ class CapitalismSetup extends Component {
     return (
 
       <Paper style={style} zDepth={3}>
-        <br />
         <br />
 
         <div>
@@ -95,6 +98,7 @@ class CapitalismSetup extends Component {
           label="Start Game"
           primary={true}
           onTouchTap={this.startGame}
+          style={buttonStyle}
         />
       </Paper>
     );
