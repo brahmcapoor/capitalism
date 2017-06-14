@@ -17,7 +17,8 @@ class App extends Component {
     return (
       <MuiThemeProvider>
         <div className="App">
-          <CapitalismHeader />
+        <br/>
+          <img src={logo} className="App-logo"/>
           <div className="App-content">
             <CapitalismSetup />
           </div>
