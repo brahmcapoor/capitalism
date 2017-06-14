@@ -5,7 +5,6 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import logo from './images/logo.png';
 import './styles/App.css';
-import CapitalismHeader from './containers/header';
 import CapitalismSetup from './components/setupform';
 import dealCards from './utils/cards';
 
