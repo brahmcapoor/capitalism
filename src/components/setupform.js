@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 import muiThemeable from 'material-ui/styles/muiThemeable';
+import { createNewGame } from '../actions'
 
 const style = {
   height: 300,
@@ -19,6 +21,72 @@ const buttonStyle = {
 
 class CapitalismSetup extends Component {
 
+
+  createHandlers = function(dispatch) {
+
+    let handleNameChange = (event) => {
+      this.setState({
+        name: event.target.value
+      });
+
+    }
+
+    let handleNumPlayersChange = (event) => {
+      this.setState({
+        numPlayers: event.target.value
+      });
+    }
+
+    let handleCodeChange = (event) => {
+      this.setState({
+        code: event.target.value
+      })
+    }
+
+    let handleStartGame = () => {
+
+      let newName = this.state.name;
+      let newNum = parseInt(this.state.numPlayers);
+      let newCode = this.state.code;
+      let valid = true;
+
+      if(newName == "") {
+        this.setState({nameError: "Name cannot be blank"});
+        valid = false;
+      } else {
+          this.setState({nameError: ""});
+      }
+
+      if(!newNum || newNum <= 1) {
+        this.setState({numError: "Must be a number greater than 1"});
+        valid = false;
+      } else {
+        this.setState({numError: ""});
+      }
+
+      if(newCode == "") {
+        this.setState({codeError: "Game code cannot be blank"});
+        valid = false;
+      } else {
+        //TODO: preexisting game code
+        this.setState({codeError: ""});
+      }
+
+      if(valid) {
+        console.log(this.state);
+        dispatch(createNewGame(newNum, newName, newCode));
+      }
+    }
+
+    return {
+      handleNameChange,
+      handleNumPlayersChange,
+      handleCodeChange,
+      handleStartGame,
+    }
+
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -29,60 +97,10 @@ class CapitalismSetup extends Component {
       nameError: '',
       codeError: '',
     };
+    this.handlers = this.createHandlers(props.dispatch);
   }
 
-  handleNameChange = (event) => {
 
-    this.setState({
-      name: event.target.value
-    });
-
-  }
-
-  handleNumPlayersChange = (event) => {
-    this.setState({
-      numPlayers: event.target.value
-    });
-  }
-
-  handleCodeChange = (event) => {
-    this.setState({
-      code: event.target.value
-    })
-  }
-
-  startGame = () => {
-    let newName = this.state.name;
-    let newNum = parseInt(this.state.numPlayers);
-    let newCode = this.state.code;
-    let valid = true;
-
-    if(newName == "") {
-      this.setState({nameError: "Name cannot be blank"});
-      valid = false;
-    } else {
-        this.setState({nameError: ""});
-    }
-
-    if(!newNum || newNum <= 1) {
-      this.setState({numError: "Must be a number greater than 1"});
-      valid = false;
-    } else {
-      this.setState({numError: ""});
-    }
-
-    if(newCode == "") {
-      this.setState({codeError: "Game code cannot be blank"});
-      valid = false;
-    } else {
-      //TODO: preexisting game code
-      this.setState({codeError: ""});
-    }
-
-    if(valid) {
-      console.log(this.state);
-    }
-  }
 
   render() {
 
@@ -95,7 +113,7 @@ class CapitalismSetup extends Component {
           <TextField
             hintText="Number of Players"
             errorText={this.state.numError}
-            onChange={this.handleNumPlayersChange}
+            onChange={this.handlers.handleNumPlayersChange}
           />
         </div>
 
@@ -103,7 +121,7 @@ class CapitalismSetup extends Component {
           <TextField
             hintText="Dealer's name"
             errorText={this.state.nameError}
-            onChange={this.handleNameChange}
+            onChange={this.handlers.handleNameChange}
           />
         </div>
 
@@ -111,7 +129,7 @@ class CapitalismSetup extends Component {
           <TextField
             hintText="Game code"
             errorText={this.state.codeError}
-            onChange={this.handleCodeChange}
+            onChange={this.handlers.handleCodeChange}
           />
         </div>
 
@@ -122,7 +140,7 @@ class CapitalismSetup extends Component {
         <RaisedButton
           label="Start Game"
           primary={true}
-          onTouchTap={this.startGame}
+          onTouchTap={this.handlers.handleStartGame}
           style={buttonStyle}
         />
       </Paper>
@@ -132,4 +150,4 @@ class CapitalismSetup extends Component {
 }
 
 
-export default CapitalismSetup;
+export default connect()(CapitalismSetup);

@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import app from './reducers';
+
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -9,22 +13,25 @@ import CapitalismSetup from './components/setupform';
 import dealCards from './utils/cards';
 
 
+export const store = createStore(app);
 
-class App extends Component {
+class Capitalism extends Component {
   render() {
     console.log(dealCards(5))
     return (
-      <MuiThemeProvider>
-        <div className="App">
-        <br/>
-          <img src={logo} className="App-logo"/>
-          <div className="App-content">
-            <CapitalismSetup />
+      <Provider store={store}>
+        <MuiThemeProvider>
+          <div className="App">
+          <br/>
+            <img src={logo} className="App-logo"/>
+            <div className="App-content">
+              <CapitalismSetup />
+            </div>
           </div>
-        </div>
-      </MuiThemeProvider>
+        </MuiThemeProvider>
+      </Provider>
     );
   }
 }
 
-export default App;
+export default Capitalism;
