@@ -6,3 +6,11 @@ export const createNewGame = (numPlayers, dealerName, gameCode) => {
     gameCode: gameCode,
   }
 }
+
+export const joinGame = (playerName, gameCode) => {
+  return {
+    type: 'joinGame',
+    playerName: playerName,
+    gameCode: gameCode,
+  }
+}

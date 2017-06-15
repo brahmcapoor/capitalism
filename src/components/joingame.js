@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import { joinGame } from '../actions';
 
 const buttonStyle = {
   float: 'right',
@@ -25,11 +26,12 @@ class CapitalismJoinGame extends Component {
     }
 
     let handleJoinGame = () => {
-      console.log(this.state["name"] + " Joining game " + this.state["gameCode"]);
+      dispatch(joinGame(this.state.name, this.state.gameCode))
     }
 
     return {
       handleGameCodeChange,
+      handleNameChange,
       handleJoinGame,
     }
   }

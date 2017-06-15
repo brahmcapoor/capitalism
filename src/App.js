@@ -9,7 +9,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import logo from './images/logo.png';
 import './styles/App.css';
-import CapitalismSetup from './components/setupform';
+import CapitalismSetup from './components/setupgame';
 import CapitalismStartForm from './components/initialform'
 import dealCards from './utils/cards';
 

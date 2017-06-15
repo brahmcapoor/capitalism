@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Paper from 'material-ui/Paper';
-import CapitalismSetup from './setupform';
+import CapitalismSetup from './setupgame';
 import CapitalismJoinGame from './joingame';
 
 const paperStyle = {
