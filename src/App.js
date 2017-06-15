@@ -10,6 +10,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import logo from './images/logo.png';
 import './styles/App.css';
 import CapitalismSetup from './components/setupform';
+import CapitalismStartForm from './components/initialform'
 import dealCards from './utils/cards';
 
 
@@ -25,7 +26,7 @@ class Capitalism extends Component {
           <br/>
             <img src={logo} className="App-logo"/>
             <div className="App-content">
-              <CapitalismSetup />
+              <CapitalismStartForm />
             </div>
           </div>
         </MuiThemeProvider>

@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import Paper from 'material-ui/Paper';
-import muiThemeable from 'material-ui/styles/muiThemeable';
 import { createNewGame } from '../actions'
 
-const style = {
-  height: 300,
+const paperStyle = {
+  height: 360,
   width: 500,
   padding: 20,
   textAlign: 'center',
@@ -17,6 +15,7 @@ const style = {
 
 const buttonStyle = {
   float: 'right',
+  marginLeft: 20,
 }
 
 class CapitalismSetup extends Component {
@@ -106,8 +105,7 @@ class CapitalismSetup extends Component {
 
     return (
 
-      <Paper style={style} zDepth={5}>
-        <br />
+      <div>
 
         <div>
           <TextField
@@ -134,16 +132,14 @@ class CapitalismSetup extends Component {
         </div>
 
         <br />
-        <br />
-        <br />
-        <br />
+
         <RaisedButton
           label="Start Game"
           primary={true}
           onTouchTap={this.handlers.handleStartGame}
           style={buttonStyle}
         />
-      </Paper>
+      </div>
     );
 
   }
