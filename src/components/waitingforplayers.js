@@ -29,6 +29,9 @@ class WaitingForPlayers extends Component {
     dbLocation.on('value', function(snapshot) {
       const nPlayersNow = snapshot.val().numPlayers;
       const nJoinedNow = Object.keys(snapshot.val().players).length;
+      if(nPlayersNow === nJoinedNow) {
+        dbLocation.off('value');
+      }
       this.setState({
         nPlayers: nPlayersNow,
         nJoined: nJoinedNow,
