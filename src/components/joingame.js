@@ -26,7 +26,8 @@ class CapitalismJoinGame extends Component {
     }
 
     let handleJoinGame = () => {
-      dispatch(joinGame(this.state.name, this.state.gameCode))
+      dispatch(joinGame(this.state.name, this.state.gameCode));
+      this.props.handler('starting');
     }
 
     return {

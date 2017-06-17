@@ -4,29 +4,46 @@ import { createStore } from 'redux';
 import app from './reducers';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import logo from './images/logo.png';
 import './styles/App.css';
-import CapitalismSetup from './components/setupgame';
-import CapitalismStartForm from './components/initialform'
-import dealCards from './utils/cards';
+import CapitalismStartForm from './components/initialform';
 
 
 export const store = createStore(app);
 
 class Capitalism extends Component {
+
+  gameChangeHandler(status) {
+    this.setState({gameStatus: status});
+    console.log(this.state);
+  }
+
+  constructor(props) {
+      super(props);
+      this.state = {
+        gameStatus:'setup',
+      }
+      this.gameChangeHandler = this.gameChangeHandler.bind(this);
+  }
+
   render() {
-    console.log(dealCards(5))
+
+    let content = null;
+    if(this.state.gameStatus === 'setup'){
+      content = <CapitalismStartForm handler={this.gameChangeHandler}/>;
+    } else if (this.state.gameStatus === 'starting') {
+      console.log("Game starting");
+    }
+
     return (
       <Provider store={store}>
         <MuiThemeProvider>
-          <div className="App">
+       <div className="App">
           <br/>
-            <img src={logo} className="App-logo"/>
+            <img src={logo} className="App-logo" alt="logo"/>
             <div className="App-content">
-              <CapitalismStartForm />
+              {content}
             </div>
           </div>
         </MuiThemeProvider>
