@@ -4,14 +4,6 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import { createNewGame } from '../actions'
 
-const paperStyle = {
-  height: 360,
-  width: 500,
-  padding: 20,
-  textAlign: 'center',
-  display: 'inline-block',
-  margin: 'auto',
-};
 
 const buttonStyle = {
   float: 'right',
@@ -44,11 +36,11 @@ class CapitalismSetup extends Component {
     let handleStartGame = () => {
 
       let newName = this.state.name;
-      let newNum = parseInt(this.state.numPlayers);
+      let newNum = parseInt(this.state.numPlayers, 10);
       let newCode = this.state.code;
       let valid = true;
 
-      if(newName == "") {
+      if(newName === "") {
         this.setState({nameError: "Name cannot be blank"});
         valid = false;
       } else {
@@ -62,7 +54,7 @@ class CapitalismSetup extends Component {
         this.setState({numError: ""});
       }
 
-      if(newCode == "") {
+      if(newCode === "") {
         this.setState({codeError: "Game code cannot be blank"});
         valid = false;
       } else {
@@ -72,6 +64,7 @@ class CapitalismSetup extends Component {
 
       if(valid) {
         dispatch(createNewGame(newNum, newName, newCode));
+        this.props.handler('starting');
       }
     }
 

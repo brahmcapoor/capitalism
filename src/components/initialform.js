@@ -18,12 +18,12 @@ class CapitalismStartForm extends Component {
     return(
       <div className="Initial-Forms">
         <Paper style={paperStyle} zDepth={5}>
-          <CapitalismJoinGame />
+          <CapitalismJoinGame handler={this.props.handler}/>
         </Paper>
         <br />
         <br />
         <Paper style={paperStyle} zDepth={5}>
-          <CapitalismSetup />
+          <CapitalismSetup handler={this.props.handler}/>
         </Paper>
       </div>
     );

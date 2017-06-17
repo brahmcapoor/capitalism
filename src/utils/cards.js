@@ -12,7 +12,7 @@ export default function dealCards(nplayers) {
   var hands = new Array(nplayers);
 
   for(let i = 0; i < nplayers; i++) {
-    hands[i] = new Array();
+    hands[i] = [];
   }
   for(let i = 0; i < deck.length; i++) {
     hands[i % nplayers].push(deck[i]);

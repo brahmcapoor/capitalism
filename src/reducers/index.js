@@ -38,7 +38,7 @@ function reducers(state = initialState, action) {
                                                                                         handsWon: 0,
                                                                                         status: 'Citizen'
                                                                                       });
-      return {...state, gameCode: action.gameCode, isDealer: 1};
+      return {...state, gameCode: action.gameCode, isDealer: 0};
 
     default: return state;
   }
