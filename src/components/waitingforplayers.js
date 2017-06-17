@@ -25,18 +25,20 @@ var dbLocation;
 class WaitingForPlayers extends Component {
 
   componentDidMount(){
+
     dbLocation = database.ref('games/' + this.props.gameCode);
     dbLocation.on('value', function(snapshot) {
       const nPlayersNow = snapshot.val().numPlayers;
       const nJoinedNow = Object.keys(snapshot.val().players).length;
-      if(nPlayersNow === nJoinedNow) {
-        dbLocation.off('value');
-      }
       this.setState({
         nPlayers: nPlayersNow,
         nJoined: nJoinedNow,
         players: Object.keys(snapshot.val().players),
       });
+      if(nPlayersNow === nJoinedNow) {
+        dbLocation.off('value');
+        this.props.handler('started');
+      }
     }.bind(this));
   }
 
@@ -65,14 +67,7 @@ class WaitingForPlayers extends Component {
 
   render() {
     let startButton = null;
-    if(this.state.startable && this.props.isDealer === 1) {
-      startButton = <RaisedButton
-                      label = "Start game"
-                      primary = {true}
-                      onTouchTap = {this.handlers.handleStartGame}
-                      style = {buttonStyle}
-                    />
-    }
+
 
     return (
       <div className="Initial-Forms">
