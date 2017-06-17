@@ -19,6 +19,7 @@ class Capitalism extends Component {
 
   gameChangeHandler(status) {
     this.setState({gameStatus: status});
+    console.log(this.state);
   }
 
   constructor(props) {
@@ -35,7 +36,9 @@ class Capitalism extends Component {
     if(this.state.gameStatus === 'setup'){
       content = <CapitalismStartForm handler={this.gameChangeHandler}/>;
     } else if (this.state.gameStatus === 'starting') {
-      content = <WaitingForPlayers />
+      content = <WaitingForPlayers handler={this.gameChangeHandler}/>;
+    } else {
+      console.log("banter");
     }
 
     return (
