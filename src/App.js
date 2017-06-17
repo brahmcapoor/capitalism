@@ -7,7 +7,10 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import logo from './images/logo.png';
 import './styles/App.css';
+
+
 import CapitalismStartForm from './components/initialform';
+import WaitingForPlayers from './components/waitingforplayers';
 
 
 export const store = createStore(app);
@@ -16,7 +19,6 @@ class Capitalism extends Component {
 
   gameChangeHandler(status) {
     this.setState({gameStatus: status});
-    console.log(this.state);
   }
 
   constructor(props) {
@@ -33,7 +35,7 @@ class Capitalism extends Component {
     if(this.state.gameStatus === 'setup'){
       content = <CapitalismStartForm handler={this.gameChangeHandler}/>;
     } else if (this.state.gameStatus === 'starting') {
-      console.log("Game starting");
+      content = <WaitingForPlayers />
     }
 
     return (

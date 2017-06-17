@@ -64,8 +64,8 @@ class CapitalismSetup extends Component {
 
       if(valid) {
         dispatch(createNewGame(newNum, newName, newCode));
+        this.props.handler('starting');
       }
-      this.props.handler('starting');
     }
 
     return {
