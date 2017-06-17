@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import Paper from 'material-ui/Paper';
 import LinearProgress from 'material-ui/LinearProgress';
 import {List, ListItem} from 'material-ui/List';
-import RaisedButton from 'material-ui/RaisedButton';
 import database from '../config/database';
+import '../styles/App.css'
 
 const paperStyle = {
   height: '100%',
@@ -14,11 +14,6 @@ const paperStyle = {
   display: 'inline-block',
   margin: 'auto',
 };
-
-const buttonStyle = {
-  float: 'right',
-  marginLeft: 20,
-}
 
 var dbLocation;
 
@@ -70,12 +65,14 @@ class WaitingForPlayers extends Component {
 
 
     return (
+
       <div className="Initial-Forms">
         <Paper style={paperStyle} zDepth={5}>
           <LinearProgress mode="determinate" min={0} max={this.state.nPlayers} value={this.state.nJoined} />
+          <h1> Players who've joined </h1>
           <List>
             {this.state.players.map(function(playerName) {
-              return <ListItem key ={playerName} primaryText={playerName} />
+              return <ListItem key ={playerName} primaryText={playerName} className="List-item"/>
             })}
             {startButton}
           </List>
