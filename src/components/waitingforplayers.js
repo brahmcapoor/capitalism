@@ -4,6 +4,7 @@ import Paper from 'material-ui/Paper';
 import LinearProgress from 'material-ui/LinearProgress';
 import {List, ListItem} from 'material-ui/List';
 import database from '../config/database';
+import dealCards from '../utils/cards';
 import '../styles/App.css'
 
 const paperStyle = {
@@ -30,8 +31,23 @@ class WaitingForPlayers extends Component {
         nJoined: nJoinedNow,
         players: Object.keys(snapshot.val().players),
       });
+
       if(nPlayersNow === nJoinedNow) {
         dbLocation.off('value');
+
+        if(this.props.isDealer === 1) {
+          let hands = dealCards(this.state.nPlayers);
+          console.log(hands);
+
+          for(let i = 0; i < this.state.players.length; i++) {
+            let hand = hands[i];
+            let player = this.state.players[i];
+            database.ref().child('games/' + this.props.gameCode + '/players/' + player).update({
+              hand: hand,
+            });
+          }
+        }
+
         this.props.handler('started');
       }
     }.bind(this));
