@@ -11,6 +11,7 @@ import './styles/App.css';
 
 import CapitalismStartForm from './components/initialform';
 import WaitingForPlayers from './components/waitingforplayers';
+import GameScreen from './components/gamescreen';
 
 
 export const store = createStore(app);
@@ -38,7 +39,7 @@ class Capitalism extends Component {
     } else if (this.state.gameStatus === 'starting') {
       content = <WaitingForPlayers handler={this.gameChangeHandler}/>;
     } else {
-      console.log("banter");
+      content = <GameScreen />
     }
 
     return (

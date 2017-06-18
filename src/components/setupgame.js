@@ -47,7 +47,7 @@ class CapitalismSetup extends Component {
           this.setState({nameError: ""});
       }
 
-      if(!newNum || newNum <= 4) {
+      if(!newNum || newNum < 4) {
         this.setState({numError: "Must be a number greater than or equal to 4"});
         valid = false;
       } else {

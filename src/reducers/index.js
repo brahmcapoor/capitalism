@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 
 const initialState = {
     gameCode: {}, //gameCode
+    playerName: "",
     hand: {}, // will be the current player's hand
     isDealer: 0, //whether or not player is Dealer (1 if true)
     currStack: { // describes the current stack being played
@@ -26,19 +27,21 @@ function reducers(state = initialState, action) {
 
       database.ref().child('games/' + action.gameCode + '/players/' + action.dealerName).set({
                                                                                         handsWon: 0,
-                                                                                        status: 'Citizen'
+                                                                                        status: 'Citizen',
+                                                                                        hand:[],
                                                                                       });
 
-      return {...state, gameCode: action.gameCode, isDealer: 1};
+      return {...state, gameCode: action.gameCode, playerName: action.dealerName, isDealer: 1};
 
     case 'joinGame':
       console.log("Player " + action.playerName + " is joining game " + action.gameCode);
 
       database.ref().child('games/' + action.gameCode + '/players/' + action.playerName).set({
                                                                                         handsWon: 0,
-                                                                                        status: 'Citizen'
+                                                                                        status: 'Citizen',
+                                                                                        hand:[],
                                                                                       });
-      return {...state, gameCode: action.gameCode, isDealer: 0};
+      return {...state, gameCode: action.gameCode, playerName: action.playerName, isDealer: 0};
 
     default: return state;
   }
